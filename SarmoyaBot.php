@@ -3,10 +3,10 @@
 // Ushbu kod UzMaxDev (Sr.R3d) tomonidan tuzildi. @PCOUZ
 define('API_KEY',"token");
 
-$builder24 = "6253670868";
+$admin_id = "6253670868";
 $admins=file_get_contents("statistika/admins.txt");
 $admin = explode("\n", $admins);
-array_push($admin,$builder24);
+array_push($admin,$admin_id);
 
 function bot($method,$datas=[]){
 $url = "https://api.telegram.org/bot".API_KEY."/".$method;
@@ -193,7 +193,7 @@ file_put_contents("statistika/obunachi.txt", "0");
 }
 if(file_get_contents("statistika/admins.txt")){
 }else{
-if(file_put_contents("statistika/admins.txt","$builder24"));
+if(file_put_contents("statistika/admins.txt","$admin_id"));
 }
 $bonus=file_get_contents("sozlamalar/pul/bonmiq.txt");
 $bonusnom=file_get_contents("sozlamalar/pul/bonnom.txt");
@@ -408,9 +408,9 @@ unlink("step/$cid.txt");
 
 if($text == "👤 Adminlar"){
 if(in_array($cid,$admin)){
-if($cid == $builder24){
+if($cid == $admin_id){
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>Quyidagilardan birini tanlang:</b>",
 'parse_mode'=>'html',
 'reply_markup'=>json_encode([
@@ -432,13 +432,13 @@ bot('SendMessage',[
 }}}
 
 if($data == "admins"){
-if($ccid == $builder24){
+if($ccid == $admin_id){
 bot('deleteMessage',[
 'chat_id'=>$ccid,
 'message_id'=>$cmid,
 ]);	
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>Quyidagilardan birini tanlang:</b>",
 'parse_mode'=>'html',
 'reply_markup'=>json_encode([
@@ -485,7 +485,7 @@ bot('deleteMessage',[
 'message_id'=>$cmid,
 ]);
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"*Kerakli ID raqamni kiriting:*",
 'parse_mode'=>'MarkDown',
 'reply_markup'=>json_encode([
@@ -497,15 +497,15 @@ bot('SendMessage',[
 file_put_contents("step/$ccid.txt",'add-admin');
 }
 
-if($userstep=="add-admin" and $cid == $builder24){
+if($userstep=="add-admin" and $cid == $admin_id){
 if($tx=="🗄 Boshqarish"){
 unlink("step/$cid.step");
 }else{
 if(is_numeric($text)=="true"){
-if($text != $builder24){
+if($text != $admin_id){
 file_put_contents("statistika/admins.txt","$admins\n$text");
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"✅ *$text* admin qilib tayinlandi!",
 'parse_mode'=>'MarkDown',
 'reply_markup'=>$admin1_menu,
@@ -537,7 +537,7 @@ bot('deleteMessage',[
 'message_id'=>$cmid,
 ]);
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>Kerakli ID raqamni kiriting:</b>",
 'parse_mode'=>'html',
 'reply_markup'=>json_encode([
@@ -549,17 +549,17 @@ bot('SendMessage',[
 file_put_contents("step/$ccid.txt",'remove-admin');
 }
 
-if($userstep == "remove-admin" and $cid == $builder24){
+if($userstep == "remove-admin" and $cid == $admin_id){
 if($tx=="🗄 Boshqarish"){
 unlink("step/$cid.step");
 }else{
 if(is_numeric($text)=="true"){
-if($text != $builder24){
+if($text != $admin_id){
 $files=file_get_contents("statistika/admins.txt");
 $file = str_replace("\n".$text."","",$files);
 file_put_contents("statistika/admins.txt",$file);
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"✅ *$text* adminlikdan olindi!",
 'parse_mode'=>'MarkDown',
 'reply_markup'=>$admin1_menu,
@@ -1077,7 +1077,7 @@ bot('SendMessage',[
 
 if($data=="ban"){
 $ban = file_get_contents("ban/$saved.txt");
-if($builder24 != $saved){
+if($admin_id != $saved){
 if($ban == "ban"){
 unlink("ban/$saved.txt");
 bot('deleteMessage',[
@@ -1867,7 +1867,7 @@ $get = file_get_contents("statistika/obunachi.txt");
 if(mb_stripos($get,$callfrid)==false){
 file_put_contents("statistika/obunachi.txt", "$get\n$callfrid");
 bot('sendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>👤 Yangi obunachi qo'shildi</b>",
 'parse_mode'=>"html"
 ]);
@@ -1878,7 +1878,7 @@ $get = file_get_contents("statistika/obunachi.txt");
 if(mb_stripos($get,$fid)==false){
 file_put_contents("statistika/obunachi.txt", "$get\n$fid");
 bot('sendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>👤 Yangi obunachi qo'shildi</b>",
 'parse_mode'=>"html"
 ]);
@@ -2183,7 +2183,7 @@ bot('deleteMessage',[
 'message_id'=>$cmid,
 ]);
 bot('sendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>🔹 Foydalanuvchi: <u><a href='tg://user?id=$ccid'>$ccid</a></u> botga investitsiya kiritdi!</b>
 
 • <b>Kiritilgan kun:</b> $kun-kun
@@ -2441,7 +2441,7 @@ bot('sendMessage',[
 ]);
 unlink("step/$ccid.txt");
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"💵 <a href='tg://user?id=$ccid'>$ccid</a> <b>pul yechib olmoqchi!</b>
 
 • <b>To'lov turi:</b> $wallet
@@ -2466,7 +2466,7 @@ bot('deleteMessage',[
 'message_id'=>$cmid,
 ]);
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<a href='tg://user?id=$id'>Foydalanuvchi</a><b> $miqdor $pul puli to'lab berildi!</b>",
 'parse_mode'=>'html',
 ]);
@@ -2501,7 +2501,7 @@ bot('deleteMessage',[
 'message_id'=>$cmid,
 ]);
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<a href='tg://user?id=$id'>Foydalanuvchi</a> <b>arizasi bekor qilindi!</b>",
 'parse_mode'=>'html',
 ]);
@@ -2782,7 +2782,7 @@ bot('sendMessage',[
 $hisob=file_get_contents("step/hisob.$fid");
 unlink("step/$fid.txt");
 bot('sendPhoto',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'photo'=>$file,
 'caption'=>"📄 <b>Foydalanuvchidan check:
 
@@ -2828,7 +2828,7 @@ $currency += $hisob;
 file_put_contents("foydalanuvchi/hisob/$odam.txt",$get);
 file_put_contents("foydalanuvchi/hisob/$odam.1.txt",$currency);
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>✅ Foydalanuvchi cheki qabul qilindi!</b>",
 'parse_mode'=>'html',
 ]);
@@ -2848,7 +2848,7 @@ bot('SendMessage',[
 'parse_mode'=>'html',
 ]);
 bot('SendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>❌ Foydalanuvchi cheki bekor qilindi!</b>",
 'parse_mode'=>'html',
 ]);
@@ -2973,7 +2973,7 @@ unlink("step/$cid.txt");
 file_put_contents("step/$cid.murojat","$cid");
 $murojat=file_get_contents("step/$cid.murojat");
 bot('sendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>📨 Yangi murojat keldi:</b> <a href='tg://user?id=$murojat'>$murojat</a>
 
 <b>📑 Murojat matni:</b> $tx
@@ -3034,7 +3034,7 @@ bot('sendMessage',[
 ]])
 ]);
 bot('sendMessage',[
-'chat_id'=>$builder24,
+'chat_id'=>$admin_id,
 'text'=>"<b>Javob yuborildi</b>",
 'parse_mode'=>"html",
 'reply_markup'=>$menyu,
